@@ -18,8 +18,13 @@ import java.util.List;
  * Output: ["c","o"]
  */
 public class FindCommonCharacters {
+
     public List<String> commonChars(String[] words) {
-        //initialize an array of counts for each character
+        // Return an empty list immediately if input is empty or null
+        if (words == null || words.length == 0) {
+            return new ArrayList<>();
+        }
+
         int[] charCount = new int[26];
         Arrays.fill(charCount, Integer.MAX_VALUE);
 
@@ -34,16 +39,16 @@ public class FindCommonCharacters {
             for (int i = 0; i < 26; i++) {
                 charCount[i] = Math.min(charCount[i], currCharCount[i]);
             }
-
         }
+
         // generate the result list by adding each character count times
         List<String> result = new ArrayList<>();
         for (int i = 0; i < 26; i++) {
             for (int j = 0; j < charCount[i]; j++) {
                 result.add(String.valueOf((char) ('a' + i)));
             }
-
         }
         return result;
     }
+
 }
